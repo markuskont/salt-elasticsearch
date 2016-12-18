@@ -40,7 +40,7 @@ boxes = [
     :mem        => "512",
     :cpu        => "1",
     :ip         => MASTER_IP,
-    :image      => "debian/jessie64",
+    :image      => "ubuntu/trusty64",
     :saltmaster => true
   }
 ]
@@ -64,6 +64,9 @@ Vagrant.configure(2) do |config|
         salt.run_highstate = false
         salt.install_type = 'git'
         salt.install_master = opts[:saltmaster]
+        if opts[:saltmaster] == true
+          salt.master_config = "vagrant/config/master"
+        end
       end
     end
   end
