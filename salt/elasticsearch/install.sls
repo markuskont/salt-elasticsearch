@@ -6,5 +6,4 @@ elasticsearch:
     - name: elasticsearch
     - enable: True
     - watch:
-#      - file: /etc/elasticsearch/elasticsearch.yml
-      - file: /etc/default/elasticsearch
+      - file: /etc/elasticsearch/jvm.options
