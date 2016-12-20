@@ -1,0 +1,4 @@
+master: salt
+mine_interval: 1
+environment: devel
+pillarenv: devel

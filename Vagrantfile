@@ -59,6 +59,7 @@ Vagrant.configure(2) do |config|
       config.vm.provision "shell",
         inline: "grep salt /etc/hosts || sudo echo \"#{MASTER_IP}\"  salt >> /etc/hosts"
       config.vm.provision :salt do |salt|
+        salt.minion_config = "vagrant/config/minion"
         salt.masterless = false
         salt.run_highstate = false
         salt.install_type = 'git'

@@ -16,6 +16,7 @@
   {%- set http = 'true' -%}
   {%- set ingest = 'true' -%}
 {%- elif 'es-proxy' in grains['host'] -%}
+  {%- set httpip = '0.0.0.0' -%}
   {%- set http = 'true' -%}
 {%- else -%}
   {%- set http = 'true' -%}
@@ -24,7 +25,7 @@
 ---
 cluster.name: {{vars['cluster.name']}}
 discovery.zen.ping.unicast.hosts:
-  {% for server, addrs in salt['mine.get']('es-master-\d+\S*$', 'network.ip_addrs', expr_form='pcre') | dictsort() %}
+  {% for server, addrs in salt['mine.get']('es-master-\d+\S*$', 'cluster_ip_addr', expr_form='pcre') | dictsort() %}
   - {{addrs[0]}}
   {% endfor %}
 http.enabled: {{http}}

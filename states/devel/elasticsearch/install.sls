@@ -6,6 +6,7 @@ elasticsearch:
   service.running:
     - name: elasticsearch
     - enable: True
+    - reload: True
     - require:
       - file: {{vars['path.data']}}
     - watch:
