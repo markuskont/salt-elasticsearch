@@ -29,8 +29,6 @@ python-m2crypto:
     - L: 'Tallinn'
     - days_valid: 3650
     - days_remaining: 90
-    - require:
-      - {{tmpkey}}
 
 {{vars['ssl.key']}}:
   file.managed:
@@ -47,4 +45,5 @@ python-m2crypto:
     - user: kibana
     - group: kibana
     - source: {{tmpcert}}
-    - requie: {{tmpcert}}
+    - require:
+      - {{tmpcert}}

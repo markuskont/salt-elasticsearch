@@ -25,7 +25,7 @@
 ---
 cluster.name: {{vars['cluster.name']}}
 discovery.zen.ping.unicast.hosts:
-  {% for server, addrs in salt['mine.get']('es-master-\d+\S*$', 'cluster_ip_addr', expr_form='pcre') | dictsort() %}
+  {% for server, addrs in salt['mine.get']('es-master-\d+\S*$', 'es_cluster_ip_addr', expr_form='pcre') | dictsort() %}
   - {{addrs[0]}}
   {% endfor %}
 http.enabled: {{http}}
@@ -33,7 +33,7 @@ http.enabled: {{http}}
 http.host: {{ httpip }}
 {% endif %}
 network.host: {{clusterip[0]}}
-node.name: {{fqdn}}
+node.name: "{{fqdn}}"
 node.data: {{data}}
 node.master: {{master}}
 node.ingest: {{ingest}}

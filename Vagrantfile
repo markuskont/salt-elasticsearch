@@ -6,7 +6,7 @@ boxes = [
   {
     :name       => "es-master-0",
     :mem        => "1024",
-    :cpu        => "1",
+    :cpu        => "2",
     :ip         => "192.168.56.170",
     :image      => 'debian/jessie64',
     :saltmaster => false
@@ -14,7 +14,7 @@ boxes = [
   {
     :name       => "es-data-0",
     :mem        => "2048",
-    :cpu        => "1",
+    :cpu        => "2",
     :ip         => "192.168.56.171",
     :image      => "ubuntu/xenial64",
     :saltmaster => false
@@ -22,7 +22,7 @@ boxes = [
   {
     :name       => "es-gw-0",
     :mem        => "2048",
-    :cpu        => "1",
+    :cpu        => "2",
     :ip         => "192.168.56.172",
     :image      => "ubuntu/trusty64",
     :saltmaster => false
@@ -30,7 +30,7 @@ boxes = [
   {
     :name       => "es-proxy-0",
     :mem        => "2048",
-    :cpu        => "1",
+    :cpu        => "2",
     :ip         => "192.168.56.173",
     :image      => "ubuntu/xenial64",
     :saltmaster => false
@@ -38,7 +38,7 @@ boxes = [
   {
     :name       => "saltmaster",
     :mem        => "512",
-    :cpu        => "1",
+    :cpu        => "2",
     :ip         => MASTER_IP,
     :image      => "ubuntu/trusty64",
     :saltmaster => true
