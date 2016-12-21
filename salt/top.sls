@@ -8,3 +8,4 @@ DEVEL:
   'E@^es-gw-\d+\S*$ and G@oscodename:trusty':
     - match: compound
     - rsyslog
+    - elasticsearch.template
