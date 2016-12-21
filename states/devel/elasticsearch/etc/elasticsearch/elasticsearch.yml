@@ -1,0 +1,41 @@
+{%- set vars = pillar['elasticsearch'] -%}
+{%- set fqdn = grains['fqdn'] -%}
+{%- set cluster = salt['mine.get']('^es-(?:master|proxy|data|gw)-\d+\S*$', 'cluster_ip_addr', expr_form='pcre') -%}
+{%- set clusterip = cluster[fqdn] -%}
+{%- set httpip = '127.0.0.1' -%}
+{%- set ingest = false -%}
+{%- set master = 'false' -%}
+{%- set data = 'false' -%}
+{%- set http = 'false' -%}
+{%- set ingest = 'false' -%}
+{%- if 'es-data' in grains['host'] -%}
+  {%- set data = 'true' -%}
+{%- elif 'es-master' in grains['host'] -%}
+  {%- set master = 'true' -%}
+{%- elif 'es-gw' in grains['host'] -%}
+  {%- set http = 'true' -%}
+  {%- set ingest = 'true' -%}
+{%- elif 'es-proxy' in grains['host'] -%}
+  {%- set httpip = '0.0.0.0' -%}
+  {%- set http = 'true' -%}
+{%- else -%}
+  {%- set http = 'true' -%}
+{%- endif -%}
+### MANAGED BY SALT ###
+---
+cluster.name: {{vars['cluster.name']}}
+discovery.zen.ping.unicast.hosts:
+  {% for server, addrs in salt['mine.get']('es-master-\d+\S*$', 'cluster_ip_addr', expr_form='pcre') | dictsort() %}
+  - {{addrs[0]}}
+  {% endfor %}
+http.enabled: {{http}}
+{% if httpip is defined and http == 'true' %}
+http.host: {{ httpip }}
+{% endif %}
+network.host: {{clusterip[0]}}
+node.name: {{fqdn}}
+node.data: {{data}}
+node.master: {{master}}
+node.ingest: {{ingest}}
+path.data: "{{vars['path.data']}}"
+path.logs: "{{vars['path.logs']}}"
