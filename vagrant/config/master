@@ -1,11 +1,11 @@
 file_recv: True
 file_roots:
-  devel:
-    - /vagrant/states/devel/
+  DEVEL:
+    - /vagrant/salt
     - /var/cache/salt/master/minions
 pillar_roots:
-  devel:
-    - /vagrant/pillar/devel/
+  base:
+    - /vagrant/pillar/
 worker_threads: 1
 hash_type: sha256
 jinja_trim_blocks: True
