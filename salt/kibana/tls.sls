@@ -19,6 +19,8 @@ python-m2crypto:
 {{tmpkey}}:
   x509.private_key_managed:
     - bits: 4096
+    - require:
+      - pkg: python-m2crypto
 
 {{tmpcert}}:
   x509.certificate_managed:
@@ -29,6 +31,8 @@ python-m2crypto:
     - L: 'Tallinn'
     - days_valid: 3650
     - days_remaining: 90
+    - require:
+      - pkg: python-m2crypto
 
 {{vars['ssl.key']}}:
   file.managed:

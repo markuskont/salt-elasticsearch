@@ -1,4 +1,3 @@
-{% if grains['oscodename'] == 'trusty' %}
 rsyslog:
   pkgrepo.managed:
     - humanname: Rsyslog Adiscon repository
@@ -14,6 +13,5 @@ rsyslog:
     - enable: True
     - reload: True
     - watch:
-      - file: /etc/rsyslog.d/00-udp-server.conf
+      - file: /etc/rsyslog.d/05-udp-server.conf
       - file: /etc/rsyslog.d/15-elastic.conf
-{% endif %}
