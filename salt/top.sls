@@ -1,10 +1,4 @@
-base:
-  'es-*':
-    - elasticsearch
-  '^es-proxy-\d+\S*$':
-    - match: pcre
-    - kibana
-devel:
+DEVEL:
   'es-*':
     - elasticsearch
   '^es-proxy-\d+\S*$':
