@@ -1,13 +1,9 @@
 file_recv: True
 file_roots:
-  base:
-    - /vagrant/states/base
-    - /var/cache/salt/master/minions
   devel:
     - /vagrant/states/devel/
+    - /var/cache/salt/master/minions
 pillar_roots:
-  base:
-    - /vagrant/pillar/base
   devel:
     - /vagrant/pillar/devel/
 worker_threads: 1
