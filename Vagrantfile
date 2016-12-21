@@ -1,6 +1,9 @@
 # vi: set ft=ruby :
-SALT_VERSION = "v2016.11.2"
 MASTER_IP = '192.168.56.174'
+# NOTE - building from git can take a lot of time and contain bugs
+SALT = 'stable' # stable|git|daily|testing
+# version to check out if using git
+SALT_VERSION = "v2016.11.2"
 
 boxes = [
   {
@@ -62,7 +65,7 @@ Vagrant.configure(2) do |config|
         salt.minion_config = "vagrant/config/minion"
         salt.masterless = false
         salt.run_highstate = false
-        salt.install_type = 'git'
+        salt.install_type = SALT
         salt.install_master = opts[:saltmaster]
         if opts[:saltmaster] == true
           salt.master_config = "vagrant/config/master"

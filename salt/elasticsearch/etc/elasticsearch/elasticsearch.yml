@@ -1,6 +1,6 @@
 {%- set vars = pillar['elasticsearch'] -%}
 {%- set fqdn = grains['fqdn'] -%}
-{%- set cluster = salt['mine.get']('^es-(?:master|proxy|data|gw)-\d+\S*$', 'cluster_ip_addr', expr_form='pcre') -%}
+{%- set cluster = salt['mine.get']('^es-(?:master|proxy|data|gw)-\d+\S*$', 'es_cluster_ip_addr', expr_form='pcre') -%}
 {%- set clusterip = cluster[fqdn] -%}
 {%- set httpip = '127.0.0.1' -%}
 {%- set ingest = false -%}
