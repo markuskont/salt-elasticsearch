@@ -13,7 +13,6 @@ elasticsearch:
       - pkg: elasticsearch
   service.running:
     - enable: True
-    - reload: True
     - require:
       - file: {{vars['path.data']}}
       - pkg: elasticsearch

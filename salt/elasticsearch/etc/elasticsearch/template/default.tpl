@@ -44,8 +44,8 @@
      },
      "properties" : {
        "@timestamp" : {
-         "include_in_all" : false,
-         "type" : "date"
+         "type" : "date",
+         "format": "strict_date_optional_time||epoch_millis||date_time"
        },
        "geoip" : {
          "dynamic" : true,

@@ -11,7 +11,6 @@ rsyslog:
   service.running:
     - name: rsyslog
     - enable: True
-    - reload: True
     - watch:
       - file: /etc/rsyslog.d/05-udp-server.conf
       - file: /etc/rsyslog.d/15-elastic.conf
