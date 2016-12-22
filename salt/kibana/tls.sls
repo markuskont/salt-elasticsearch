@@ -21,6 +21,7 @@ python-m2crypto:
     - bits: 4096
     - require:
       - pkg: python-m2crypto
+      - /etc/ssl/kibana
 
 {{tmpcert}}:
   x509.certificate_managed:
@@ -32,6 +33,7 @@ python-m2crypto:
     - days_valid: 3650
     - days_remaining: 90
     - require:
+      - {{tmpkey}}
       - pkg: python-m2crypto
 
 {{vars['ssl.key']}}:
@@ -41,6 +43,7 @@ python-m2crypto:
     - group: kibana
     - source: {{tmpkey}}
     - require:
+      - {{vars['ssl.dir']}}
       - {{tmpkey}}
 
 {{vars['ssl.cert']}}:
@@ -50,4 +53,5 @@ python-m2crypto:
     - group: kibana
     - source: {{tmpcert}}
     - require:
+      - {{vars['ssl.dir']}}
       - {{tmpcert}}
