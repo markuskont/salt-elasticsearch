@@ -9,3 +9,6 @@ kibana:
       - file: /etc/kibana/kibana.yml
       - file: {{vars['ssl.key']}}
       - file: {{vars['ssl.cert']}}
+    - require:
+      - {{vars['ssl.key']}}
+      - {{vars['ssl.cert']}}
