@@ -3,3 +3,4 @@ include:
   - elasticsearch.repo
   - elasticsearch.install
   - elasticsearch.config
+  - elasticsearch.plugin

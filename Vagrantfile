@@ -24,7 +24,7 @@ boxes = [
   },
   {
     :name       => "es-gw-0",
-    :mem        => "2048",
+    :mem        => "4096",
     :cpu        => "2",
     :ip         => "192.168.56.172",
     :image      => "ubuntu/trusty64",
