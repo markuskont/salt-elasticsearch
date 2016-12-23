@@ -1,0 +1,29 @@
+{
+  "description" : "process Apache logs from BSD syslog",
+  "processors" : [
+    {
+      "grok": {
+        "field": "message",
+        "patterns": ["(?:<%{DATA:syslog_pri}>)?%{DATA:syslog_timestamp} %{DATA:syslog_hostname} %{DATA:syslog_program}(?:\\[%{POSINT:syslog_pid}\\])?:? %{GREEDYDATA:syslog_message}"]
+      }
+    },
+    {
+      "remove": { "field": "message" }
+    },
+    {
+      "grok": {
+        "field": "syslog_message",
+        "patterns": ["%{IPORHOST:http_vhost}:?%{IPORHOST:http_port}? %{IPORHOST:http_clientip} %{USER:http_ident} %{USER:http_auth} \\[%{HTTPDATE:http_timestamp}\\] \"(?:%{WORD:http_method} %{NOTSPACE:http_request}(?: HTTP/%{NUMBER:http_version})?|%{DATA:http_rawrequest})\" %{NUMBER:http_response} (?:%{NUMBER:http_bytes}|-) \"%{DATA:http_referer}\" \"%{DATA:http_useragent}\""]
+      }
+    },
+    {
+      "remove": { "field": "syslog_message" }
+    },
+    {
+      "geoip" : { "field" : "http_clientip" }
+    },
+    {
+      "user_agent" : { "field" : "http_useragent" }
+    }
+  ]
+}
