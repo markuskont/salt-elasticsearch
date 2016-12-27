@@ -1,14 +1,11 @@
 /etc/kafka:
   file.directory:
-    - user: kafka
-    - group: kafka
     - mode: 755
 
 /etc/kafka/config.properties:
   file.managed:
-    - user: kafka
-    - group: kafka
-    - mode: 755
+    - mode: 644
+    - template: jinja
     - source: salt://kafka/etc/kafka/server.properties
     - require:
       - /var/log/kafka

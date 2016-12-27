@@ -1,27 +1,32 @@
 {% set vars = pillar['kafka'] %}
 
-kafka:
+{{vars['user']}}:
   group.present:
-    - name: kafka
+    - name: {{vars['user']}}
   user.present:
     - gid_from_name: True
     - home: {{vars['home']}}
     - shell: '/bin/false'
+    - createhome: True
     - groups:
-      - kafka
-    - require:
-      - {{vars['home']}}
+      - {{vars['user']}}
 
 {{vars['home']}}:
   file.directory:
-    - user: kafka
-    - group: kafka
+    - user: {{vars['user']}}
+    - group: {{vars['user']}}
     - mode: 755
-/var/log/kafka:
+    - require:
+      - user: {{vars['user']}}
+      - group: {{vars['user']}}
+{{vars['logdir']}}:
   file.directory:
-    - user: kafka
-    - group: kafka
+    - user: {{vars['user']}}
+    - group: {{vars['user']}}
     - mode: 750
+    - require:
+      - user: {{vars['user']}}
+      - group: {{vars['user']}}
 
 zookeeperd:
   pkg.installed

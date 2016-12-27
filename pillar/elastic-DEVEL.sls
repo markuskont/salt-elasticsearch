@@ -11,5 +11,7 @@ kibana:
 
 kafka:
   manage: true
-  home: /opt/kafka
+  user: 'kafka'
+  home: '/opt/kafka'
+  logdir: '/var/log/kafka'
   version: '0.10.1.0'
