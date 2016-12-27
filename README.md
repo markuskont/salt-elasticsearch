@@ -23,3 +23,13 @@ Note that developer does not need superuser privileges to use salt execution mod
 ```
 salt '*' state.highstate
 ```
+
+## Requirements
+
+This deployment has been tested on a PC host with following specs:
+* Intel(R) Core(TM) i7-4710MQ CPU @ 2.50GHz
+* 16GB RAM
+* 100Gig-ish free disk space
+* Ubuntu 16.04 LTS
+* Vagrant 1.8 and 1.9
+* Functional internet connection (10-50Mbit/s)
