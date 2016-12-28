@@ -8,6 +8,7 @@ rsyslog:
       - rsyslog-mmjsonparse
       - rsyslog-elasticsearch
       - rsyslog-kafka
+      - rsyslog-mmnormalize
     - refresh: True
   service.running:
     - name: rsyslog
@@ -15,4 +16,4 @@ rsyslog:
     - watch:
       - file: /etc/rsyslog.d/05-udp-server.conf
       - file: /etc/rsyslog.d/14-kafka.conf
-      - file: /etc/rsyslog.d/15-elastic.conf
+      #- file: /etc/rsyslog.d/15-elastic.conf
