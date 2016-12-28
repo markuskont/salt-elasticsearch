@@ -14,4 +14,5 @@ kafka:
   user: 'kafka'
   home: '/opt/kafka'
   logdir: '/var/log/kafka'
+  confdir: '/etc/kafka'
   version: '0.10.1.0'

@@ -3,4 +3,5 @@ include:
   - java
   - kafka.install
   - kafka.config
+  - kafka.service
 {% endif %}

@@ -1,12 +1,13 @@
-/etc/kafka:
+{% set vars = pillar['kafka'] %}
+{{vars['confdir']}}:
   file.directory:
     - mode: 755
 
-/etc/kafka/config.properties:
+{{vars['confdir']}}/config.properties:
   file.managed:
     - mode: 644
     - template: jinja
     - source: salt://kafka/etc/kafka/server.properties
     - require:
-      - /var/log/kafka
-      - /etc/kafka
+      - {{vars['logdir']}}
+      - {{vars['confdir']}}
