@@ -36,10 +36,10 @@
       "remove": { "field": "syslog_message" }
     },
     {
-      "geoip" : { "field" : "http_clientip" }
+      "geoip" : { "field": "http_clientip", "target_field": "geoip_src" }
     },
     {
-      "user_agent" : { "field" : "http_useragent" }
+      "user_agent" : { "field": "http_useragent" }
     }
   ]
 }

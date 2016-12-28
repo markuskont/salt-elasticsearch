@@ -7,10 +7,12 @@ rsyslog:
       - rsyslog
       - rsyslog-mmjsonparse
       - rsyslog-elasticsearch
+      - rsyslog-kafka
     - refresh: True
   service.running:
     - name: rsyslog
     - enable: True
     - watch:
       - file: /etc/rsyslog.d/05-udp-server.conf
+      - file: /etc/rsyslog.d/14-kafka.conf
       - file: /etc/rsyslog.d/15-elastic.conf
