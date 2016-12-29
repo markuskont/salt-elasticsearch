@@ -1,3 +1,4 @@
+{% set vars = pillar['rsyslog-gateway'] %}
 rsyslog:
   pkgrepo.managed:
     - humanname: Rsyslog Adiscon repository
@@ -16,4 +17,5 @@ rsyslog:
     - watch:
       - file: /etc/rsyslog.d/05-udp-server.conf
       - file: /etc/rsyslog.d/14-kafka.conf
+      - file: {{vars['ruledir']}}/apache.rb
       #- file: /etc/rsyslog.d/15-elastic.conf

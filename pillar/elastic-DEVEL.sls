@@ -16,3 +16,6 @@ kafka:
   logdir: '/var/log/kafka'
   confdir: '/etc/kafka'
   version: '0.10.1.0'
+
+rsyslog-gateway:
+  ruledir: '/opt/lognorm'
