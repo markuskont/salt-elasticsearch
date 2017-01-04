@@ -19,8 +19,19 @@ var config = {
   'suricata': {
     'index': 'suricata',
     'rotate': 'weekly'
+  },
+  'cee': {
+    'index': 'cee',
+    'rotate': 'weekly'
   }
 }
+var topics = []
+
+Object.keys(config).forEach(function(key){
+  topics.push({
+    topic: key
+  })
+});
 
 function newTimeValues() {
   return {
@@ -35,11 +46,7 @@ var Consumer = kafka.Consumer,
   client = new kafka.Client(),
   consumer = new Consumer(
   client,
-    [
-      {
-        topic: 'apache'
-      }
-    ],
+    topics,
     {
       autoCommit: true
     }
@@ -76,7 +83,7 @@ consumer.on('message', function (message) {
     client.bulk({
       body: bulk
     }, function(err, resp) {
-      console.log(err);
+      if (err) { console.log(err); };
     });
     bulk = [];
   }
