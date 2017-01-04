@@ -4,4 +4,3 @@ include:
   - elasticsearch.install
   - elasticsearch.config
   - elasticsearch.plugin
-  - elasticsearch.template

@@ -9,3 +9,4 @@ DEVEL:
     - match: compound
     - rsyslog
     - kafka
+    - elasticsearch.template
