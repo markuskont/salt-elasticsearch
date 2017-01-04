@@ -18,6 +18,7 @@ var config = {
   },
   'suricata': {
     'index': 'suricata',
+    'pipeline': 'suricata',
     'rotate': 'weekly'
   },
   'cee': {
