@@ -1,0 +1,11 @@
+{
+  "description": "Enrich Suricata logs with GeoIP",
+  "processors": [
+    {
+      "geoip" : { "field": "src_ip", "target_field": "src_geoip" }
+    },
+    {
+      "geoip" : { "field": "dest_ip", "target_field": "dest_geoip" }
+    }
+  ]
+}

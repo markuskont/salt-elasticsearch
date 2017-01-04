@@ -8,8 +8,16 @@ var TYPE = 'events';
 // map kafka input topic to ES index and pipeline
 var config = {
   'apache': {
-    'index': 'syslog',
+    'index': 'apache',
     'pipeline': 'apache',
+    'rotate': 'weekly'
+  },
+  'syslog': {
+    'index': 'syslog',
+    'rotate': 'weekly'
+  },
+  'suricata': {
+    'index': 'suricata',
     'rotate': 'weekly'
   }
 }

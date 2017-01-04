@@ -5,8 +5,8 @@
  "settings" : {
    "index" : {
      "refresh_interval" : "60s",
-     "number_of_shards" : 10,
-     "number_of_replicas" : 0
+     "number_of_shards" : 8,
+     "number_of_replicas" : 1
    }
  },
  "mappings" : {
