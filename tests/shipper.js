@@ -26,6 +26,10 @@ var config = {
     'rotate': 'weekly'
   }
 }
+var consumer_params = {
+  autoCommit: true
+}
+
 var topics = []
 
 Object.keys(config).forEach(function(key){
@@ -45,13 +49,7 @@ var rotate = newTimeValues();
 
 var Consumer = kafka.Consumer,
   client = new kafka.Client(),
-  consumer = new Consumer(
-  client,
-    topics,
-    {
-      autoCommit: true
-    }
-  );
+  consumer = new Consumer(client, topics, consumer_params);
 
 var client = new elasticsearch.Client({
   host: 'localhost:9200'
@@ -89,3 +87,7 @@ consumer.on('message', function (message) {
     bulk = [];
   }
 });
+
+//consumer.on('uncaughtException', function (err) {
+//    console.log(err);
+//});
