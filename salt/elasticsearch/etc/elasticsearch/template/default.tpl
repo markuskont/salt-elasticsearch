@@ -50,18 +50,10 @@
        "geoip" : {
          "dynamic" : true,
          "properties" : {
-           "ip" : {
-             "type" : "ip"
-           },
-           "latitude" : {
-             "type" : "half_float"
-           },
-           "location" : {
-             "type" : "geo_point"
-           },
-           "longitude" : {
-             "type" : "half_float"
-           }
+           "ip" : { "type" : "ip" },
+           "latitude" : { "type" : "half_float" },
+           "location" : { "type" : "geo_point" },
+           "longitude" : { "type" : "half_float" }
          }
        },
        "@version" : {

@@ -2,7 +2,3 @@ master: salt
 mine_interval: 1
 environment: DEVEL
 #pillarenv: DEVEL
-
-grains:
-  roles:
-   - elasticsearch

@@ -15,6 +15,14 @@ boxes = [
     :saltmaster => false
   },
   {
+    :name       => "es-master-1",
+    :mem        => "1024",
+    :cpu        => "2",
+    :ip         => "192.168.56.169",
+    :image      => 'ubuntu/xenial64',
+    :saltmaster => false
+  },
+  {
     :name       => "es-data-0",
     :mem        => "2048",
     :cpu        => "2",
@@ -71,6 +79,7 @@ Vagrant.configure(2) do |config|
           salt.master_config = "vagrant/config/master"
         end
       end
+      config.vm.provision "shell", path: "./vagrant/scripts/assign_roles.py"
     end
   end
 end
