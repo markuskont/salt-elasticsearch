@@ -8,9 +8,9 @@ var TYPE = 'events';
 // map kafka input topic to ES index and pipeline
 var config = {
   'apache': {
-    'index': 'apache',
+    'index': 'http',
     'pipeline': 'apache',
-    'rotate': 'weekly'
+    'rotate': 'monthly'
   },
   'syslog': {
     'index': 'syslog',

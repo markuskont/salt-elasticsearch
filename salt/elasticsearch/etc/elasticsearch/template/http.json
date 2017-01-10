@@ -1,0 +1,37 @@
+{
+ "order" : 10,
+ "version" : 0,
+ "template" : "http-*",
+ "mappings" : {
+   "_default_" : {
+     "properties" : {
+       "geoip_src" : {
+         "dynamic" : true,
+         "properties" : {
+           "ip" : { "type" : "ip" },
+           "latitude" : { "type" : "half_float" },
+           "location" : { "type" : "geo_point" },
+           "longitude" : { "type" : "half_float" }
+         }
+       },
+       "user_agent" : {
+         "dynamic" : true,
+         "properties" : {
+           "patch" : { "type" : "integer" },
+           "major" : { "type" : "integer" },
+           "minor" : { "type" : "integer" }
+         }
+       },
+       "timestamp" : {
+         "type" : "date",
+         "format" : "dd/MMM/yyyy:HH:mm:ss Z"
+       },
+       "src_ip" : { "type" : "ip" },
+       "bytes" : { "type" : "integer" },
+       "response" : { "type" : "integer" },
+       "httpversion" : { "type" : "float" }
+     }
+   }
+ },
+ "aliases" : { }
+}
