@@ -3,7 +3,9 @@
 
 {% for type in ['master', 'data', 'ingest'] %}
   {% if type in grains['roles'] %}
-    {% do vars['node'].update({type:true}) %}
+    {% do vars['node'].update({
+      type:true
+    }) %}
   {% endif %}
 {% endfor %}
 
@@ -22,6 +24,19 @@
 
 {% do vars['network'].update({
   'host':salt['mine.get'](glob, 'es_cluster_ip_addr', expr_form='glob')[glob][0]
+}) %}
+
+{% set masters = [] %}
+
+{% for master, ips in salt['mine.get'](
+  'G@roles:master and G@roles:elasticsearch',
+  fun='es_cluster_ip_addr',
+  expr_form='compound').items() %}
+    {% do masters.append(ips[0]) %}
+{% endfor %}
+
+{% do vars.discovery.zen.ping.unicast.update({
+  'hosts':masters
 }) %}
 
 /etc/elasticsearch/jvm.options:
