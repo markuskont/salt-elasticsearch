@@ -15,14 +15,6 @@ boxes = [
     :saltmaster => false
   },
   {
-    :name       => "es-master-1",
-    :mem        => "1024",
-    :cpu        => "2",
-    :ip         => "192.168.56.169",
-    :image      => 'ubuntu/xenial64',
-    :saltmaster => false
-  },
-  {
     :name       => "es-data-0",
     :mem        => "2048",
     :cpu        => "2",

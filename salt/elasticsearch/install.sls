@@ -1,10 +1,10 @@
-{%- set vars = pillar['elasticsearch'] -%}
+{%- set vars = pillar['elasticsearch']['config'] -%}
 elasticsearch:
   pkg.installed:
     - require:
       - pkgrepo: elasticsearch-repo
   file.directory:
-    - name: {{vars['path.data']}}
+    - name: {{vars['path']['data']}}
     - user: elasticsearch
     - group: elasticsearch
     - mode: 750
@@ -14,7 +14,7 @@ elasticsearch:
   service.running:
     - enable: True
     - require:
-      - file: {{vars['path.data']}}
+      - file: {{vars['path']['data']}}
       - pkg: elasticsearch
     - watch:
       - file: /etc/elasticsearch/jvm.options

@@ -1,7 +1,27 @@
+# some params, such as node, are only defaults and will be overwritten based on roles
 elasticsearch:
-  cluster.name: 'josephine'
-  path.logs: '/var/log/elasticsearch'
-  path.data: '/srv/elasticsearch'
+  config:
+    cluster:
+      name: 'josephine'
+    path:
+      logs: '/var/log/elasticsearch'
+      data: '/srv/elasticsearch'
+    node:
+      name: {{grains['fqdn']}}
+      master: false
+      data: false
+      ingest: false
+    http:
+      enabled: false
+      host: 127.0.0.1
+    discovery:
+      zen:
+        ping:
+          unicast:
+            hosts:
+              - 192.168.56.170
+    network:
+      host: 0.0.0.0
 
 kibana:
   manage.tls: true
