@@ -1,4 +1,4 @@
-{%- set vars = pillar['elasticsearch']['config'] -%}
+{% set vars = pillar['elasticsearch']['config'] %}
 {% set glob = grains['fqdn'] %}
 
 {% for type in ['master', 'data', 'ingest'] %}
