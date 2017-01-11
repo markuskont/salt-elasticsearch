@@ -2,10 +2,10 @@ DEVEL:
   'roles:elasticsearch':
     - match: grain
     - elasticsearch
-  '^es-proxy-\d+\S*$':
-    - match: pcre
+  'G@roles:elasticsearch and G@roles:proxy':
+    - match: compound
     - kibana
-  'E@^es-gw-\d+\S*$ and G@oscodename:trusty':
+  'G@roles:elasticsearch and G@roles:ingest and G@oscodename:trusty':
     - match: compound
     - rsyslog
     - kafka
