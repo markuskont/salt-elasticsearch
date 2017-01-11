@@ -34,7 +34,7 @@
            "tx_id": { "type": "integer" }
          }
        },
-       "flow_id": { "type": "integer" },
+       "flow_id": { "type": "long" },
        "http": {
          "properties": {
            "length": { "type": "integer" },
