@@ -16,12 +16,6 @@
   }) %}
 {% endif %}
 
-{% if 'ingest' in grains['roles'] %}
-  {% do vars['http'].update({
-    'enabled':true
-  }) %}
-{% endif %}
-
 {% do vars['network'].update({
   'host':salt['mine.get'](glob, 'es_cluster_ip_addr', expr_form='glob')[glob][0]
 }) %}

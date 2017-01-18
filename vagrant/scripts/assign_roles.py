@@ -14,8 +14,9 @@ if '-master-' in hostname:
     grains['roles'].append('master')
 elif '-data-' in hostname:
     grains['roles'].append('data')
-elif '-gw-' in hostname:
     grains['roles'].append('ingest')
+elif '-gw-' in hostname:
+    grains['roles'].append('gateway')
 elif '-proxy-' in hostname:
     grains['roles'].append('proxy')
 
