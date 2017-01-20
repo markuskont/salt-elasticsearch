@@ -1,0 +1,25 @@
+{
+ "order" : 10,
+ "version" : 0,
+ "template" : "inventory-*",
+ "mappings" : {
+   "_default_" : {
+     "properties" : {
+       "timestamp" : {
+         "type" : "date",
+         "format" : "dd/MMM/yyyy:HH:mm:ss Z"
+       },
+       "pythonversion": {
+         "type": "text",
+         "fields": {
+           "keyword": {
+             "type": "keyword",
+             "ignore_above": 256
+           }
+         }
+       }
+     }
+   }
+ },
+ "aliases" : { }
+}
