@@ -3,19 +3,25 @@ elasticsearch:
   pkg.installed:
     - require:
       - pkgrepo: elasticsearch-repo
+  service.running:
+    - enable: True
+    - require:
+      {% for dir in vars.path.data %}
+      - file: {{ dir }}
+      {% endfor %}
+      - pkg: elasticsearch
+    - watch:
+      - file: /etc/elasticsearch/jvm.options
+      - file: /etc/elasticsearch/elasticsearch.yml
+
+{% for dir in vars.path.data %}
+elastic.datadir.create.{{ dir }}:
   file.directory:
-    - name: {{vars['path']['data']}}
+    - name: {{ dir }}
     - user: elasticsearch
     - group: elasticsearch
     - mode: 750
     - makedirs: True
     - require:
       - pkg: elasticsearch
-  service.running:
-    - enable: True
-    - require:
-      - file: {{vars['path']['data']}}
-      - pkg: elasticsearch
-    - watch:
-      - file: /etc/elasticsearch/jvm.options
-      - file: /etc/elasticsearch/elasticsearch.yml
+{% endfor %}

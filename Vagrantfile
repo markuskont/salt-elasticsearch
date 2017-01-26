@@ -71,6 +71,7 @@ Vagrant.configure(2) do |config|
           salt.master_config = "vagrant/config/master"
         end
       end
+      config.vm.provision "shell", path: "./vagrant/scripts/devel_packages.sh"
       config.vm.provision "shell", path: "./vagrant/scripts/assign_roles.py"
     end
   end
