@@ -1,6 +1,6 @@
 {%- set vars = pillar['elasticsearch']['config'] -%}
 elasticsearch:
-  pkg.installed:
+  pkg.latest:
     - require:
       - pkgrepo: elasticsearch-repo
   service.running:

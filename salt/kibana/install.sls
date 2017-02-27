@@ -1,6 +1,6 @@
 {%- set vars = pillar['kibana'] -%}
 kibana:
-  pkg.installed:
+  pkg.latest:
     - require:
       - pkgrepo: elasticsearch-repo
   service.running:
