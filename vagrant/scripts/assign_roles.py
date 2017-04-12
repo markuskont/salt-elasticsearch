@@ -12,12 +12,12 @@ command = ['service', 'salt-minion', 'restart']
 
 if '-master-' in hostname:
     grains['roles'].append('master')
-elif '-data-' in hostname:
+if '-data-' in hostname:
     grains['roles'].append('data')
     grains['roles'].append('ingest')
-elif '-gw-' in hostname:
+if '-gw-' in hostname:
     grains['roles'].append('gateway')
-elif '-proxy-' in hostname:
+if '-proxy-' in hostname:
     grains['roles'].append('proxy')
 
 with open('/etc/salt/grains', 'w') as outfile:

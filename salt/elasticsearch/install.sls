@@ -14,7 +14,7 @@ elasticsearch:
       - file: /etc/elasticsearch/jvm.options
       - file: /etc/elasticsearch/elasticsearch.yml
 
-{% for dir in vars.path.data %}
+{% for dir in vars.path.data.split(',') %}
 elastic.datadir.create.{{ dir }}:
   file.directory:
     - name: {{ dir }}
