@@ -5,9 +5,7 @@ elasticsearch:
       name: 'josephine'
     path:
       logs: '/var/log/elasticsearch'
-      data:
-        - '/srv/elasticsearch/0'
-        - '/srv/elasticsearch/1'
+      data: '/srv/elasticsearch/0,/srv/elasticsearch/1'
     node:
       name: {{grains['fqdn']}}
       master: false

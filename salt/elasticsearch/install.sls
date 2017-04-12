@@ -1,4 +1,11 @@
 {%- set vars = pillar['elasticsearch']['config'] -%}
+
+{% if vars.path.data is iterable and vars.path.data is not string %}
+  {% set datadirs = vars.path.data %}
+{% else %}
+  {% set datadirs = vars['path']['data'].split(',') %}
+{% endif %}
+
 elasticsearch:
   pkg.latest:
     - require:
@@ -6,7 +13,7 @@ elasticsearch:
   service.running:
     - enable: True
     - require:
-      {% for dir in vars.path.data %}
+      {% for dir in datadirs %}
       - file: {{ dir }}
       {% endfor %}
       - pkg: elasticsearch
@@ -14,7 +21,8 @@ elasticsearch:
       - file: /etc/elasticsearch/jvm.options
       - file: /etc/elasticsearch/elasticsearch.yml
 
-{% for dir in vars.path.data.split(',') %}
+{% if datadirs is iterable %}
+  {% for dir in datadirs %}
 elastic.datadir.create.{{ dir }}:
   file.directory:
     - name: {{ dir }}
@@ -24,4 +32,8 @@ elastic.datadir.create.{{ dir }}:
     - makedirs: True
     - require:
       - pkg: elasticsearch
-{% endfor %}
+  {% endfor %}
+{% else %}
+Fail - datadir definition must be array or comma separated string of elements
+  test.fail_without_changes
+{% endif %}
