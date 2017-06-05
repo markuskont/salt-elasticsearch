@@ -1,17 +1,10 @@
-ingest_useragent:
+{% for pkg in pillar.elasticsearch.plugins %}
+{{ pkg }}:
   cmd.run:
-    - name: /usr/share/elasticsearch/bin/elasticsearch-plugin install ingest-user-agent
-    - unless: /usr/share/elasticsearch/bin/elasticsearch-plugin list | grep ingest-user-agent
+    - name: /usr/share/elasticsearch/bin/elasticsearch-plugin install {{ pkg }}
+    - unless: /usr/share/elasticsearch/bin/elasticsearch-plugin list | grep {{ pkg }}
     - require:
       - pkg: elasticsearch
     - listen_in:
       - service: elasticsearch
-
-ingest_geoip:
-  cmd.run:
-    - name: /usr/share/elasticsearch/bin/elasticsearch-plugin install ingest-geoip
-    - unless: /usr/share/elasticsearch/bin/elasticsearch-plugin list | grep ingest-geoip
-    - require:
-      - pkg: elasticsearch
-    - listen_in:
-      - service: elasticsearch
+{% endfor %}

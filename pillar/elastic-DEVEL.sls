@@ -22,6 +22,9 @@ elasticsearch:
               - 192.168.56.170
     network:
       host: 0.0.0.0
+  plugins:
+    - ingest-geoip
+    - ingest-user-agent
 
 kibana:
   manage.tls: true
