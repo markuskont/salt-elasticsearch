@@ -1,0 +1,40 @@
+{
+  "order" : 10,
+  "version" : 0,
+  "template" : "netflow5-*",
+  "mappings" : {
+    "_default_" : {
+      "properties" : {
+        "timestamp" : {
+          "type" : "date",
+          "format" : "epoch_second"
+        },
+        "ipv4_src_addr" : { "type" : "ip" },
+        "ipv4_dst_addr" : { "type" : "ip" },
+        "ipv4_next_hop" : { "type" : "ip" },
+        "input_snmp" : { "type" : "integer" },
+        "output_snmp" : { "type" : "integer" },
+        "in_pkts" : { "type" : "integer" },
+        "in_bytes" : { "type" : "integer" },
+        "first_switched" : {
+          "type" : "date",
+          "format" : "epoch_millis"
+        },
+        "last_switched" : {
+          "type" : "date",
+          "format" : "epoch_millis"
+        },
+        "ipv4_src_port" : { "type" : "integer" },
+        "ipv4_dst_port" : { "type" : "integer" },
+        "tcp_flags" : { "type" : "integer" },
+        "protocol" : { "type" : "integer" },
+        "src_tos" : { "type" : "integer" },
+        "in_as" : { "type" : "integer" },
+        "out_as" : { "type" : "integer" },
+        "src_mask" : { "type" : "integer" },
+        "dst_mask" : { "type" : "integer" }
+      }
+    }
+  },
+  "aliases" : { }
+}
