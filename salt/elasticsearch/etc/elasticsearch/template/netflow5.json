@@ -32,7 +32,17 @@
         "in_as" : { "type" : "integer" },
         "out_as" : { "type" : "integer" },
         "src_mask" : { "type" : "integer" },
-        "dst_mask" : { "type" : "integer" }
+        "dst_mask" : { "type" : "integer" },
+        "dst_geoip": {
+          "properties": {
+            "location" : { "type" : "geo_point" }
+          }
+        },
+        "src_geoip": {
+          "properties": {
+            "location" : { "type" : "geo_point" }
+          }
+        }
       }
     }
   },
