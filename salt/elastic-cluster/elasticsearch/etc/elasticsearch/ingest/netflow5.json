@@ -1,0 +1,27 @@
+{
+  "description": "Enrich netflow v5 with GeoIP",
+  "processors": [
+    {
+      "geoip" : {
+        "field": "ipv4_src_addr",
+        "target_field": "src_geoip",
+        "properties": [
+          "LOCATION",
+          "COUNTRY_NAME",
+          "COUNTRY_ISO_CODE"
+        ]
+      }
+    },
+    {
+      "geoip" : {
+        "field": "ipv4_dst_addr",
+        "target_field": "dst_geoip",
+        "properties": [
+          "LOCATION",
+          "COUNTRY_NAME",
+          "COUNTRY_ISO_CODE"
+        ]
+      }
+    }
+  ]
+}

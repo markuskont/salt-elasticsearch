@@ -1,7 +1,8 @@
-apt-transport-https:
-  pkg.latest
+elastic-cluster.apt-transport-https:
+  pkg.latest:
+    - name: apt-transport-https
 
-elasticsearch-repo:
+elastic-cluster.elasticsearch-repo:
   pkgrepo.managed:
     - humanname: Elasticsearch repository
     - name: deb https://artifacts.elastic.co/packages/5.x/apt stable main

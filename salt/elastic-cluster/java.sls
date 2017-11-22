@@ -1,6 +1,6 @@
-{% set os = grains.get('os')|lower %}
+{% set os = grains.os|lower %}
 {% if os == 'ubuntu' %}
-  {% set codename = grains.get('oscodename') %}
+  {% set codename = grains.oscodename %}
 {% elif os == 'debian' %}
   {% set os = 'ubuntu' %}
   {% if grains['oscodename'] == 'jessie' %}
@@ -12,7 +12,7 @@
   {% endif%}
 {% endif %}
 
-webupd8-repo:
+elastic-cluster.webupd8-repo:
   pkgrepo.managed:
     - humanname: WebUpd8 Oracle Java PPA repository
     - name: deb http://ppa.launchpad.net/webupd8team/java/{{os}} {{codename}} main
@@ -21,22 +21,22 @@ webupd8-repo:
     - file: /etc/apt/sources.list.d/WebUpd8.list
     - clean_file: True
 
-oracle-license-select:
+elastic-cluster.oracle-license-select:
   cmd.run:
     - unless: which java
     - name: '/bin/echo /usr/bin/debconf shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections'
     - require_in:
-      - pkg: oracle-java8-installer
-      - cmd: oracle-license-seen-lie
+      - pkg: elastic-cluster.oracle-java8-installer
+      - cmd: elastic-cluster.oracle-license-seen-lie
 
-oracle-license-seen-lie:
+elastic-cluster.oracle-license-seen-lie:
   cmd.run:
     - name: '/bin/echo /usr/bin/debconf shared/accepted-oracle-license-v1-1 seen true  | /usr/bin/debconf-set-selections'
     - require_in:
-      - pkg: oracle-java8-installer
+      - pkg: elastic-cluster.oracle-java8-installer
 
-oracle-java8-installer:
-  pkg:
-    - installed
+elastic-cluster.oracle-java8-installer:
+  pkg.installed:
+    - name: oracle-java8-installer
     - require:
-      - pkgrepo: webupd8-repo
+      - pkgrepo: elastic-cluster.webupd8-repo

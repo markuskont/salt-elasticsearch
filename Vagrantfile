@@ -11,7 +11,7 @@ boxes = [
     :mem        => "1024",
     :cpu        => "2",
     :ip         => "192.168.56.170",
-    :image      => 'debian/jessie64',
+    :image      => 'debian/stretch64',
     :saltmaster => false
   },
   {
@@ -19,7 +19,7 @@ boxes = [
     :mem        => "2048",
     :cpu        => "2",
     :ip         => "192.168.56.171",
-    :image      => "ubuntu/xenial64",
+    :image      => "debian/stretch64",
     :saltmaster => false
   },
   {

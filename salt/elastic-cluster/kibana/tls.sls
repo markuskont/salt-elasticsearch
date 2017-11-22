@@ -1,4 +1,4 @@
-{%- set vars = pillar['kibana'] -%}
+{%- set vars = pillar.kibana -%}
 {%- set tmpkey = '/etc/ssl/kibana/key.pem' -%}
 {%- set tmpcert = '/etc/ssl/kibana/cert.pem' -%}
 {{vars['ssl.dir']}}:
@@ -13,8 +13,9 @@
     - user: root
     - group: root
 
-python-m2crypto:
-  pkg.installed
+elastic-cluster.python-m2crypto:
+  pkg.installed:
+    - name: python-m2crypto
 
 {{tmpkey}}:
   x509.private_key_managed:
@@ -26,7 +27,7 @@ python-m2crypto:
 {{tmpcert}}:
   x509.certificate_managed:
     - signing_private_key: {{tmpkey}}
-    - CN: {{grains['fqdn']}}
+    - CN: {{ grains.fqdn }}
     - C: 'Estonia'
     - ST: 'Harjumaa'
     - L: 'Tallinn'
@@ -34,7 +35,7 @@ python-m2crypto:
     - days_remaining: 90
     - require:
       - {{tmpkey}}
-      - pkg: python-m2crypto
+      - pkg: elastic-cluster.python-m2crypto
 
 {{vars['ssl.key']}}:
   file.managed:
