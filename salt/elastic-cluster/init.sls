@@ -43,4 +43,17 @@ elastic-cluster.kibana.setup:
     - require:
       - salt: elastic-cluster.master.setup
       - salt: elastic-cluster.data.setup
+      - salt: elastic-cluster.ingest.setup
+      - salt: elastic-cluster.proxy.setup
+
+elastic-cluster.logstash.setup:
+  salt.state:
+    - tgt: 'G@roles:elasticsearch and G@roles:gateway'
+    - tgt_type: compound
+    - sls: elastic-cluster.logstash
+    - saltenv: {{ saltenv }}
+    - require:
+      - salt: elastic-cluster.master.setup
+      - salt: elastic-cluster.data.setup
+      - salt: elastic-cluster.ingest.setup
       - salt: elastic-cluster.proxy.setup

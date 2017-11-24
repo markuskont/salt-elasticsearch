@@ -1,4 +1,3 @@
-
 include:
   - elastic-cluster.elasticsearch.repo
   - elastic-cluster.kibana.install
