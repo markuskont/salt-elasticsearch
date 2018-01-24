@@ -3,7 +3,7 @@ Deploy elasticsearch using saltstack.
 
 # vagrant
 
-This repository is meant to be used as a local development environment. Easiest way to get started is to use virtualbox provider.
+This repository is meant to be used as a local development environment. Easiest way to get started is to use virtualbox provider. Only elasticsearch 5.x is currently supported.
 
 ```
 vagrant up
@@ -21,7 +21,7 @@ salt '*' test.ping
 Note that developer does not need superuser privileges to use salt execution modules as vagrant user. This is due to pre-configured ACL within salt-master config file. However, local system administration tasks (e.g. accepting certificate requests) still require elevation. You can deploy elasticsearch cluster within saltmaster VM once the vagrant environment is operational.
 
 ```
-salt '*' state.highstate
+salt-run state.orchestrate elastic-cluster saltenv=DEVEL
 ```
 
 ## Requirements

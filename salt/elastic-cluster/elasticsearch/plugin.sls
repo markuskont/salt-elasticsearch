@@ -1,4 +1,7 @@
+{% if 'plugins' in pillar.elasticsearch %}
+
 {% for pkg in pillar.elasticsearch.plugins %}
+
 {{ pkg }}:
   cmd.run:
     - name: /usr/share/elasticsearch/bin/elasticsearch-plugin install {{ pkg }}
@@ -7,4 +10,7 @@
       - pkg: elasticsearch
     - listen_in:
       - service: elasticsearch
+
 {% endfor %}
+
+{% endif %}
